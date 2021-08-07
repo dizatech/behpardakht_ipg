@@ -1,10 +1,10 @@
 {
-    "name": "dizatech/pasargad_ipg",
+    "name": "dizatech/behpardakht_ipg",
     "type": "library",
     "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
-            "Dizatech\\PasargadIpg\\": "src/"
+            "Dizatech\\BehpardakhtIpg\\": "src/"
         }
     },
     "authors": [

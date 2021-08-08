@@ -18,13 +18,13 @@ class BehpardakhtIpg{
         $this->wsClient = new SoapClient('https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl');
     }
 
-    public function getToken($amount, $invoice_number, $redirect_address, $mobile_no=NULL)
+    public function getToken($amount, $order_id, $redirect_address, $mobile_no=NULL)
     {
         $args = [
             'terminalId'        => $this->terminalId,
             'userName'          => $this->userName,
             'userPassword'      => $this->userPassword,
-            'orderId'           => $invoice_number,
+            'orderId'           => $order_id,
             'amount'            => $amount,
             'localDate'         => date('Ymd'),
             'localTime'         => date('His'),

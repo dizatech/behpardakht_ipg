@@ -66,7 +66,7 @@ class BehpardakhtIpg{
         $result = $result->return;
 
         $response = new \stdClass();
-        if( $result == 0 || $result == 43 ){
+        if( $result == 0 ){
             $response->status = 'success';
         }
         else{
@@ -89,7 +89,44 @@ class BehpardakhtIpg{
         ];
 
         $result = $this->wsClient->bpVerifyRequest($args);
-        var_dump( $result ); die();
+        $result = $result->return;
+
+        $response = new \stdClass();
+        if( $result == 0 || $result == 43 || $result == 45 ){
+            $response->status = 'success';
+        }
+        else{
+            $response->status = 'error';
+        }
+        $response->message = self::getMessage($result);
+
+        return $response;
+    }
+
+    public function refundRequest($order_id, $sale_order_id, $sale_reference_id)
+    {
+        $args = [
+            'terminalId'        => $this->terminalId,
+            'userName'          => $this->userName,
+            'userPassword'      => $this->userPassword,
+            'orderId'           => $order_id,
+            'saleOrderId'       => $sale_order_id,
+            'saleReferenceId'   => $sale_reference_id
+        ];
+
+        $result = $this->wsClient->bpReversalRequest($args);
+        $result = $result->return;
+
+        $response = new \stdClass();
+        if( $result == 0 ){
+            $response->status = 'success';
+        }
+        else{
+            $response->status = 'error';
+        }
+        $response->message = self::getMessage($result);
+
+        return $response;
     }
 
     public static function getMessage($status_code)

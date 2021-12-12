@@ -66,7 +66,7 @@ class BehpardakhtIpg{
         $result = $result->return;
 
         $response = new \stdClass();
-        if( $result == 0 ){
+        if( $result == 0 || $result == 43 ){
             $response->status = 'success';
         }
         else{
